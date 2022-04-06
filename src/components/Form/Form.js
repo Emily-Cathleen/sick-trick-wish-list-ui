@@ -5,36 +5,41 @@ class Form extends Component {
   constructor() {
     super();
     this.state = {
-      stance: '',
-      obstacle: ''
+      stanceName: '',
+      obstacle: '',
+      trick: '',
+      tutorialLink: ''
     }
   }
 
-  handleChange = event => {
-  this.setState({ [event.target.name]: event.target.value });
-}
+ handleChange = (event) => {
+   event.preventDefault();
+   this.setState({ [event.target.name]: event.target.value })
+ }
+
+
 
   render() {
   return (
     <form>
-      <select/>
-        <option value="none"></option>
-        <option>Regular</option>
-        <option >Switch</option>
-        <select/>
+
+      <select className="stance" name="stanceName" onChange={event => this.handleChange(event)} id="id" >
+        <option value="none">Choose your Stance</option>
+        <option value='regular'>Regular</option>
+        <option value='switch'>Switch</option>
+      </select>
 
 
       <input
         placeholder='Name of Trick'
-        name='title'
-        value={this.state.stance}
+        name='trick'
+        value={this.state.trick}
         onChange={event => this.handleChange(event)}
       />
 
       <input
-        type='dropdown'
         placeholder='Choose your Obstacle'
-        name='description'
+        name='obstacle'
         value={this.state.obstacle}
         onChange={event => this.handleChange(event)}
       />
@@ -42,16 +47,16 @@ class Form extends Component {
       <input
         type='dropdown'
         placeholder='Link your Tutorial'
-        name='description'
-        value={this.state.obstacle}
+        name='tutorialLink'
+        value={this.state.tutorialLink}
         onChange={event => this.handleChange(event)}
       />
 
       <button>Send It!</button>
+
     </form>
   )
 }
-
 
 
 }
